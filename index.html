@@ -23,7 +23,8 @@
             color: var(--text);
             margin: 0;
             margin: 0;
-            padding: 10px;
+            padding: 0;
+            /* Eliminado el borde/padding del body para móviles */
             text-align: center;
             line-height: 1.6;
             overflow-x: hidden;
@@ -140,12 +141,20 @@
         }
 
         .decorative-doves {
+            /* 
+               INSTRUCCIONES PARA MOVER LOS PAJARITOS:
+               - top: Controla la altura vertical. Mayor número = más abajo. (Ej: 20px es alto, 70px es bajo).
+               - width: Controla qué tan separados están entre sí. (Ej: 75% están cerca, 100% están a los bordes).
+               - padding: Ajuste fino lateral. 
+            */
             position: absolute;
-            top: 70px;
-            width: 100%;
+            top: 25px;
+            /* Ajustado para estar dentro del arco */
+            width: 85%;
+            /* Ancho ajustado */
             display: flex;
             justify-content: space-between;
-            padding: 0 50px;
+            padding: 0 10px;
             box-sizing: border-box;
             z-index: 2;
             pointer-events: none;
@@ -515,12 +524,19 @@
 
         .footer {
             margin-top: 60px;
+            padding-bottom: 20px;
+            /* Añadido espacio abajo */
             font-size: 0.8rem;
             color: #aaa;
             letter-spacing: 1px;
         }
 
         @media (min-width: 768px) {
+            body {
+                padding: 20px;
+                /* Vuelve el padding en PC */
+            }
+
             .details-section {
                 flex-direction: row;
                 align-items: stretch;
