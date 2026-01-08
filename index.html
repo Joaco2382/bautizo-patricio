@@ -26,10 +26,10 @@
             text-align: center;
             line-height: 1.6;
             overflow-x: hidden;
-            /* Evita scroll horizontal por animación */
+
         }
 
-        /* --- Animación de Hojas/Plumas Doradas --- */
+
         .falling-leaves {
             position: fixed;
             top: 0;
@@ -66,7 +66,7 @@
             }
         }
 
-        /* Variaciones para hacer la caída más natural */
+
         .leaf:nth-child(1) {
             left: 10%;
             animation-duration: 8s;
@@ -113,7 +113,7 @@
             overflow: hidden;
         }
 
-        /* Decoración de arco dorado mejorada */
+
         .arch-decoration {
             border: 3px solid var(--gold);
             border-bottom: none;
@@ -160,7 +160,7 @@
             z-index: 10;
         }
 
-        /* Texto Dorado Gradiente */
+
         h1,
         h2,
         .gp-title,
@@ -171,10 +171,10 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             color: #C5A059;
-            /* Fallback */
+
         }
 
-        /* Divisor Floral */
+
         .floral-divider {
             width: 100%;
             max-width: 300px;
@@ -182,7 +182,7 @@
             display: block;
         }
 
-        /* Esquinas Decorativas */
+
         .corner-ornament {
             position: absolute;
             width: 80px;
@@ -198,7 +198,7 @@
             top: 20px;
             left: 20px;
             background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20C20 40 30 50 50 50" stroke="%23C5A059" stroke-width="2"/><path d="M20 20C40 20 50 30 50 50" stroke="%23C5A059" stroke-width="2"/><circle cx="20" cy="20" r="3" fill="%23C5A059"/><circle cx="50" cy="50" r="2" fill="%23C5A059"/></svg>');
-            /* Simple corner for example, can be complex SVG */
+
         }
 
         .co-tr {
@@ -276,7 +276,7 @@
             font-style: italic;
         }
 
-        /* Sección de Cuenta Regresiva */
+
         .countdown-container {
             margin: 40px 0;
             padding: 20px;
@@ -327,7 +327,7 @@
             color: #999;
         }
 
-        /* Padrinos */
+
         .godparents {
             display: flex;
             justify-content: center;
@@ -358,7 +358,7 @@
             color: #555;
         }
 
-        /* Detalles */
+
         .details-section {
             display: flex;
             flex-direction: column;
@@ -413,14 +413,14 @@
             color: white;
         }
 
-        /* Botón Calendario */
+
         .calendar-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             background-color: #4285F4;
-            /* Google Blue */
+
             color: white;
             text-decoration: none;
             padding: 12px 25px;
@@ -436,7 +436,7 @@
             background-color: #3367d6;
         }
 
-        /* RSVP */
+
         .rsvp-section {
             background-color: #fafafa;
             padding: 40px 30px;
@@ -519,71 +519,14 @@
             letter-spacing: 1px;
         }
 
-        .container {
-            padding: 80px 50px;
-        }
-        }
-
-        /* --- Estilos para Celulares (Mobile) --- */
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-                /* Menos borde en celular */
+        @media (min-width: 768px) {
+            .details-section {
+                flex-direction: row;
+                align-items: stretch;
             }
 
             .container {
-                padding: 40px 20px;
-                /* Más espacio interno para que respire */
-                width: 100%;
-                box-sizing: border-box;
-            }
-
-            h1 {
-                font-size: 3rem;
-                /* Título un poco más chico */
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            .photo-frame {
-                width: 180px;
-                height: 180px;
-                /* Foto ajustada */
-            }
-
-            .countdown {
-                gap: 8px;
-                /* Menos espacio entre cajitas de tiempo */
-            }
-
-            .time-val {
-                width: 50px;
-                height: 50px;
-                font-size: 1.4rem;
-                /* Números más chicos para que quepan */
-            }
-
-            .gp-col {
-                min-width: 100%;
-                /* Padrinos ocupan todo el ancho en cel */
-            }
-
-            .arch-decoration {
-                border-top-left-radius: 150px;
-                /* Ajustar arco */
-                border-top-right-radius: 150px;
-            }
-
-            /* Ajustar palomas para que no se salgan */
-            .decorative-doves {
-                padding: 0 10px;
-            }
-
-            .decorative-doves svg {
-                width: 50px;
-                height: 50px;
+                padding: 80px 50px;
             }
         }
     </style>
@@ -592,7 +535,7 @@
 <body>
 
     <div class="container">
-        <!-- Animación de fondo -->
+
         <div class="falling-leaves">
             <div class="leaf"></div>
             <div class="leaf"></div>
@@ -602,7 +545,7 @@
         </div>
 
         <div class="container">
-            <!-- Esquinas Decorativas -->
+
             <div class="corner-ornament co-tl"></div>
             <div class="corner-ornament co-tr"></div>
             <div class="corner-ornament co-bl"></div>
@@ -611,14 +554,14 @@
             <div class="arch-decoration"></div>
 
             <div class="decorative-doves">
-                <!-- Palomita Izquierda (Mirando al centro) -->
+
                 <svg width="80" height="80" viewBox="0 0 50 50" fill="#C5A059" style="transform: scaleX(-1);">
                     <path
                         d="M25,5 C20,10 15,15 15,25 C15,35 25,35 30,30 C30,30 25,40 20,45 C25,48 35,40 38,32 C40,35 45,30 45,25 C45,15 35,10 25,5 Z M25,8 C30,12 35,15 38,20 C38,20 32,18 30,22 C30,22 28,15 25,8 Z"
                         stroke="#C5A059" stroke-width="1" fill="none" />
                     <path d="M18,20 C10,10 5,15 8,25 C8,25 12,22 18,20 Z" fill="#C5A059" opacity="0.3" />
                 </svg>
-                <!-- Palomita Derecha (Mirando al centro) -->
+
                 <svg width="80" height="80" viewBox="0 0 50 50" fill="#C5A059">
                     <path
                         d="M25,5 C20,10 15,15 15,25 C15,35 25,35 30,30 C30,30 25,40 20,45 C25,48 35,40 38,32 C40,35 45,30 45,25 C45,15 35,10 25,5 Z M25,8 C30,12 35,15 38,20 C38,20 32,18 30,22 C30,22 28,15 25,8 Z"
@@ -629,11 +572,11 @@
 
             <div class="content">
                 <div class="cross-icon">✝</div>
-                <!-- <div class="dove-icon">🕊️</div> -->
+
                 <h1>Mi Bautizo</h1>
 
                 <div class="photo-frame">
-                    <!-- Foto Actualizada -->
+
                     <img src="./Maite-Lastra--(26)-2.jpg" alt="Foto de Patricio">
                 </div>
 
@@ -645,37 +588,36 @@
                     luz."
                 </p>
 
-                <!-- Divisor Floral SVG -->
+
                 <svg class="floral-divider" viewBox="0 0 200 20" fill="none" stroke="#C5A059">
                     <path d="M100 10 C 130 10, 140 0, 190 10" stroke-width="1.5" fill="none" />
                     <path d="M100 10 C 70 10, 60 0, 10 10" stroke-width="1.5" fill="none" />
                     <circle cx="100" cy="10" r="3" fill="#C5A059" />
                     <circle cx="10" cy="10" r="2" fill="#C5A059" />
                     <circle cx="190" cy="10" r="2" fill="#C5A059" />
-                    <!-- Hojitas -->
+
                     <path d="M110 10 Q 120 15 130 10" stroke-width="1" />
                     <path d="M90 10 Q 80 15 70 10" stroke-width="1" />
                 </svg>
 
-                <!-- Cuenta Regresiva -->
+
                 <div class="countdown-container">
                     <div class="countdown-title">Faltan para el gran día</div>
                     <div class="countdown" id="countdown">
                         <div class="time-box">
                             <div class="time-val" id="days">00</div>
-                            <div class="time-label">Días</div>
-                        </div>
-                        <div class="time-box">
-                            <div class="time-val" id="hours">00</div>
-                            <div class="time-label">Hs</div>
-                        </div>
-                        <div class="time-box">
-                            <div class="time-val" id="minutes">00</div>
-                            <div class="time-label">Min</div>
-                        </div>
-                        <div class="time-box">
-                            <div class="time-val" id="seconds">00</div>
-                            <div class="time-label">Seg</div>
+                            <div class="time-box">
+                                <div class="time-val" id="hours">00</div>
+                                <div class="time-label">Hs</div>
+                            </div>
+                            <div class="time-box">
+                                <div class="time-val" id="minutes">00</div>
+                                <div class="time-label">Min</div>
+                            </div>
+                            <div class="time-box">
+                                <div class="time-val" id="seconds">00</div>
+                                <div class="time-label">Seg</div>
+                            </div>
                         </div>
                     </div>
 
@@ -686,7 +628,7 @@
                         📅 Agendar en Google Calendar
                     </a>
 
-                    <!-- Otro divisor pequeño -->
+
                     <div style="font-size: 20px; color: var(--gold); margin: 30px 0;">⚜️</div>
 
                     <div class="godparents">
@@ -751,7 +693,7 @@
                                 ampliar)</small>
                         </div>
 
-                        <!-- Lightbox Modal -->
+
                         <div id="imageModal" onclick="closeModal()"
                             style="display:none; position:fixed; z-index:10000; padding-top:50px; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.9);">
                             <span
@@ -817,16 +759,16 @@
                 </div>
             </div>
 
-            <!-- Stealth Admin Button (Top Right, Invisible) -->
+
             <div onclick="window.location.href='admin.html'"
                 style="position: fixed; top: 0; right: 0; width: 50px; height: 50px; cursor: default; z-index: 9999;">
             </div>
 
-            <!-- Supabase JS -->
+
             <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
             <script>
-                // Configuración de Supabase
+
                 const supabaseUrl = 'https://xlhiudracgwmolfazqvn.supabase.co'
                 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhsaGl1ZHJhY2d3bW9sZmF6cXZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgxNTY4MjcsImV4cCI6MjA3MzczMjgyN30.5Qm-6gYkcKs1cK5xt3YqxFSsnfMkd1QXosu2GQIN1H4'
                 const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey, {
@@ -835,8 +777,7 @@
                     }
                 })
 
-                // Configuración de la fecha del evento (Año, Mes [0-11], Día, Hora, Minuto)
-                // 14 de Febrero 2026, 11:30 AM
+
                 const eventDate = new Date(2026, 1, 14, 11, 30, 0).getTime();
 
                 function updateCountdown() {
@@ -862,7 +803,7 @@
                 setInterval(updateCountdown, 1000);
                 updateCountdown();
 
-                // Manejo del Formulario (Solo Supabase)
+
                 document.getElementById("whatsappForm").addEventListener("submit", async function (event) {
                     event.preventDefault();
 
