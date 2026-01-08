@@ -24,7 +24,7 @@
             margin: 0;
             margin: 0;
             padding: 0;
-            /* Eliminado el borde/padding del body para móviles */
+            padding: 0;
             text-align: center;
             line-height: 1.6;
             overflow-x: hidden;
@@ -449,6 +449,58 @@
             box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.03);
         }
 
+        .gift-section {
+            background-color: #e6d3a3;
+            color: #5a5a5a;
+            padding: 40px 30px;
+            margin-top: 60px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .gift-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .gift-text {
+            font-size: 1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .bank-details {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .bank-row {
+            margin-bottom: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .copy-btn {
+            background: var(--gold);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
         .rsvp-note {
             background-color: #fff8e1;
             padding: 20px;
@@ -518,7 +570,6 @@
         .footer {
             margin-top: 60px;
             padding-bottom: 20px;
-            /* Añadido espacio abajo */
             font-size: 0.8rem;
             color: #aaa;
             letter-spacing: 1px;
@@ -527,7 +578,6 @@
         @media (min-width: 768px) {
             body {
                 padding: 20px;
-                /* Vuelve el padding en PC */
             }
 
             .details-section {
@@ -781,6 +831,26 @@
                             <button type="submit" class="submit-btn"
                                 style="box-shadow: 0 4px 14px 0 rgba(197, 160, 89, 0.39);">Confirmar ✨</button>
                         </form>
+                    </div>
+
+                    <div class="gift-section">
+                        <div class="gift-title">Regalos</div>
+                        <p class="gift-text">
+                            La presencia de ustedes es el regalo más importante para Patricio.<br>
+                            Si desean hacerle un presente, les dejamos los datos bancarios:
+                        </p>
+
+                        <div class="bank-details">
+                            <div class="bank-row" style="font-weight: 600; font-size: 1.1rem; margin-bottom: 15px;">
+                                Joaquin Ignacio Espinosa Carvallo</div>
+                            <div class="bank-row">RUT: 21.094.362-5</div>
+                            <div class="bank-row">Cuenta Corriente</div>
+                            <div class="bank-row" style="font-family: monospace; font-size: 1.1rem;">0 000 95 62137 6
+                            </div>
+                            <div class="bank-row">Banco Santander</div>
+                            <div class="bank-row" style="font-size: 0.9rem; margin-top: 10px;">joaking2382@gmail.com
+                            </div>
+                        </div>
                     </div>
 
                     <div class="footer">
