@@ -94,7 +94,7 @@
 <body>
     <script>
         const password = prompt("Ingrese contraseña de administrador:");
-        if (password !== "1111") {
+        if (!password || password !== "1111") {
             document.body.innerHTML = "<h1 style='text-align:center; margin-top:50px; color:#c5a059; font-family:sans-serif;'>Acceso Denegado</h1>";
             throw new Error("Acceso denegado");
         }
