@@ -20,6 +20,10 @@
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: #fdfbf7;
+            background-image: radial-gradient(#C5A059 1px, transparent 1px);
+            background-size: 30px 30px;
+            /* Textura sutil de puntos */
+            background-attachment: fixed;
             color: var(--text);
             margin: 0;
             padding: 20px;
@@ -113,7 +117,6 @@
             overflow: hidden;
         }
 
-        /* Decoración de arco dorado mejorada */
         .arch-decoration {
             border: 3px solid var(--gold);
             border-bottom: none;
@@ -183,7 +186,7 @@
             top: 20px;
             left: 20px;
             background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20C20 40 30 50 50 50" stroke="%23C5A059" stroke-width="2"/><path d="M20 20C40 20 50 30 50 50" stroke="%23C5A059" stroke-width="2"/><circle cx="20" cy="20" r="3" fill="%23C5A059"/><circle cx="50" cy="50" r="2" fill="%23C5A059"/></svg>');
-            /* Simple corner for example, can be complex SVG */
+
         }
 
         .co-tr {
@@ -610,8 +613,12 @@
                         📅 Agendar en Google Calendar
                     </a>
 
-                    <!-- Otro divisor pequeño -->
-                    <div style="font-size: 20px; color: var(--gold); margin: 30px 0;">⚜️</div>
+                    <!-- Divisor Floral Pequeño -->
+                    <svg class="floral-divider" style="max-width: 150px; margin: 30px auto;" viewBox="0 0 100 20"
+                        fill="none">
+                        <path d="M0 10 Q 25 20 50 10 T 100 10" stroke="#C5A059" stroke-width="1.5" fill="none" />
+                        <circle cx="50" cy="10" r="3" fill="#C5A059" />
+                    </svg>
 
                     <div class="godparents">
                         <div class="gp-col">
@@ -624,8 +631,14 @@
                         </div>
                     </div>
 
-                    <hr
-                        style="border: 0; border-top: 1px solid var(--gold-light); width: 60%; margin: 40px auto; opacity: 0.5;">
+                    <!-- Separador Elegante -->
+                    <svg class="floral-divider" viewBox="0 0 300 30" fill="none"
+                        style="margin: 40px auto; opacity: 0.6;">
+                        <path d="M10 15 L 130 15" stroke="#e6d3a3" stroke-width="1" />
+                        <path d="M170 15 L 290 15" stroke="#e6d3a3" stroke-width="1" />
+                        <rect x="140" y="5" width="20" height="20" transform="rotate(45 150 15)" stroke="#C5A059"
+                            stroke-width="2" fill="none" />
+                    </svg>
 
                     <div class="details-section">
                         <div class="detail-card">
@@ -655,6 +668,13 @@
 
 
                         </div>
+                    </div>
+
+                    <!-- Separador antes del RSVP -->
+                    <div style="margin: 50px 0 20px;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="#C5A059" style="opacity:0.7;">
+                            <path d="M12 2L15 8L21 9L17 14L18 20L12 17L6 20L7 14L3 9L9 8L12 2Z" />
+                        </svg>
                     </div>
 
                     <div class="rsvp-section" id="rsvp">
