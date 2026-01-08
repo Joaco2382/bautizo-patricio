@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Lista de Invitados</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            padding: 20px;
+            background: #fdfbf7;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            color: #C5A059;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #f9f5eb;
+            color: #C5A059;
+        }
+
+        tr:hover {
+            background-color: #fafafa;
+        }
+
+        .badge {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .yes {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .no {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background: #f9f5eb;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .stat-num {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #C5A059;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const password = prompt("Ingrese contraseña de administrador:");
+        if (password !== "1111") {
+            document.body.innerHTML = "<h1 style='text-align:center; margin-top:50px; color:#c5a059; font-family:sans-serif;'>Acceso Denegado</h1>";
+            throw new Error("Acceso denegado");
+        }
+    </script>
+    <div class="container">
+        <h1>🕊️ Lista de Invitados</h1>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div>Confirmados</div>
+                <div class="stat-num" id="count-yes">0</div>
+            </div>
+            <div class="stat-box">
+                <div>Rechazados</div>
+                <div class="stat-num" id="count-no">0</div>
+            </div>
+            <div class="stat-box">
+                <div>Total</div>
+                <div class="stat-num" id="count-total">0</div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Asistencia</th>
+                    <th>Fecha Registro</th>
+                </tr>
+            </thead>
+            <tbody id="guest-list">
+                <tr>
+                    <td colspan="3" style="text-align:center;">Cargando...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://xlhiudracgwmolfazqvn.supabase.co'
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhsaGl1ZHJhY2d3bW9sZmF6cXZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgxNTY4MjcsImV4cCI6MjA3MzczMjgyN30.5Qm-6gYkcKs1cK5xt3YqxFSsnfMkd1QXosu2GQIN1H4'
+        // Use a different variable name to avoid conflict with the global 'supabase' object from the CDN
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey, {
+            auth: {
+                persistSession: false // Fixes "Tracking Prevention" issues
+            }
+        })
+
+        async function loadGuests() {
+            const { data, error } = await supabaseClient
+                .from('bautizo_invitados')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (error) {
+                console.error(error);
+                document.getElementById('guest-list').innerHTML = `<tr><td colspan="3" style="color:red;">Error cargando datos: ${error.message}</td></tr>`;
+                return;
+            }
+
+            const tbody = document.getElementById('guest-list');
+            tbody.innerHTML = '';
+
+            let yesCount = 0;
+            let noCount = 0;
+
+            if (data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;">No hay registros aún.</td></tr>';
+            } else {
+                data.forEach(guest => {
+                    const date = new Date(guest.created_at).toLocaleString('es-CL');
+                    const statusClass = guest.asistencia === 'Si' ? 'yes' : 'no';
+
+                    if (guest.asistencia === 'Si') yesCount++;
+                    else noCount++;
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${guest.nombre}</td>
+                        <td><span class="badge ${statusClass}">${guest.asistencia}</span></td>
+                        <td style="font-size:0.8rem; color:#888;">${date}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+
+            document.getElementById('count-yes').innerText = yesCount;
+            document.getElementById('count-no').innerText = noCount;
+            document.getElementById('count-total').innerText = data.length;
+        }
+
+        loadGuests();
+    </script>
+</body>
+
+</html>
