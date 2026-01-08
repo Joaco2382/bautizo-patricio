@@ -20,10 +20,6 @@
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: #fdfbf7;
-            background-image: radial-gradient(#C5A059 1px, transparent 1px);
-            background-size: 30px 30px;
-            /* Textura sutil de puntos */
-            background-attachment: fixed;
             color: var(--text);
             margin: 0;
             padding: 20px;
@@ -117,6 +113,7 @@
             overflow: hidden;
         }
 
+        /* Decoración de arco dorado mejorada */
         .arch-decoration {
             border: 3px solid var(--gold);
             border-bottom: none;
@@ -141,7 +138,22 @@
             text-shadow: 0 0 10px rgba(197, 160, 89, 0.4);
         }
 
+        .decorative-doves {
+            position: absolute;
+            top: 40px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            box-sizing: border-box;
+            z-index: 2;
+            pointer-events: none;
+        }
 
+        .decorative-doves img {
+            width: 60px;
+            opacity: 0.8;
+        }
 
         .content {
             position: relative;
@@ -186,7 +198,7 @@
             top: 20px;
             left: 20px;
             background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20C20 40 30 50 50 50" stroke="%23C5A059" stroke-width="2"/><path d="M20 20C40 20 50 30 50 50" stroke="%23C5A059" stroke-width="2"/><circle cx="20" cy="20" r="3" fill="%23C5A059"/><circle cx="50" cy="50" r="2" fill="%23C5A059"/></svg>');
-
+            /* Simple corner for example, can be complex SVG */
         }
 
         .co-tr {
@@ -507,14 +519,71 @@
             letter-spacing: 1px;
         }
 
-        @media (min-width: 768px) {
-            .details-section {
-                flex-direction: row;
-                align-items: stretch;
+        .container {
+            padding: 80px 50px;
+        }
+        }
+
+        /* --- Estilos para Celulares (Mobile) --- */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+                /* Menos borde en celular */
             }
 
             .container {
-                padding: 80px 50px;
+                padding: 40px 20px;
+                /* Más espacio interno para que respire */
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            h1 {
+                font-size: 3rem;
+                /* Título un poco más chico */
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .photo-frame {
+                width: 180px;
+                height: 180px;
+                /* Foto ajustada */
+            }
+
+            .countdown {
+                gap: 8px;
+                /* Menos espacio entre cajitas de tiempo */
+            }
+
+            .time-val {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+                /* Números más chicos para que quepan */
+            }
+
+            .gp-col {
+                min-width: 100%;
+                /* Padrinos ocupan todo el ancho en cel */
+            }
+
+            .arch-decoration {
+                border-top-left-radius: 150px;
+                /* Ajustar arco */
+                border-top-right-radius: 150px;
+            }
+
+            /* Ajustar palomas para que no se salgan */
+            .decorative-doves {
+                padding: 0 10px;
+            }
+
+            .decorative-doves svg {
+                width: 50px;
+                height: 50px;
             }
         }
     </style>
@@ -541,16 +610,20 @@
 
             <div class="arch-decoration"></div>
 
-            <!-- Icono Concha Bautismal -->
-            <div
-                style="position: absolute; top: 50px; left: 0; right: 0; text-align: center; z-index: 2; pointer-events: none; opacity: 0.8;">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="#C5A059">
+            <div class="decorative-doves">
+                <!-- Palomita Izquierda (Mirando al centro) -->
+                <svg width="80" height="80" viewBox="0 0 50 50" fill="#C5A059" style="transform: scaleX(-1);">
                     <path
-                        d="M12,2 C7,2 3,6 3,11 C3,16 6,20 9,21 L9,22 L15,22 L15,21 C18,20 21,16 21,11 C21,6 17,2 12,2 Z M12,4 C15.5,4 18.5,6.5 19,10 L17,10 C16.5,7.5 14.5,5.5 12,5.5 L12,4 Z M12,5.5 C10.5,5.5 9,6.5 8,8 L9.5,9 C10,8 11,7.5 12,7.5 L12,5.5 Z M5,11 C5,8 7,5.5 9.5,4.5 L10.5,6 C8.5,7 7,9 7,11 L5,11 Z"
-                        fill-opacity="0.2" />
+                        d="M25,5 C20,10 15,15 15,25 C15,35 25,35 30,30 C30,30 25,40 20,45 C25,48 35,40 38,32 C40,35 45,30 45,25 C45,15 35,10 25,5 Z M25,8 C30,12 35,15 38,20 C38,20 32,18 30,22 C30,22 28,15 25,8 Z"
+                        stroke="#C5A059" stroke-width="1" fill="none" />
+                    <path d="M18,20 C10,10 5,15 8,25 C8,25 12,22 18,20 Z" fill="#C5A059" opacity="0.3" />
+                </svg>
+                <!-- Palomita Derecha (Mirando al centro) -->
+                <svg width="80" height="80" viewBox="0 0 50 50" fill="#C5A059">
                     <path
-                        d="M12 2C7.03 2 3 6.03 3 11c0 4.97 3.03 9.03 9 11 5.97-1.97 9-6.03 9-11 0-4.97-4.03-9-9-9zm0 18c-3.66-1.54-5.63-4.49-5.96-8h11.92c-.33 3.51-2.3 6.46-5.96 8zm-6-9c.28-2.61 1.76-4.88 3.9-6.26.68 1.15 1.54 2.15 2.53 2.97-.84.77-1.57 1.69-2.14 2.71a8.94 8.94 0 0 1-4.29.58zm6-7c-.77.58-1.46 1.25-2.06 2-.86-.71-1.61-1.56-2.22-2.51C8.61 8.86 10.23 4.93 12 4.93c1.77 0 3.39 3.93 4.28 9.56-.61.95-1.36 1.8-2.22 2.51-.6-.75-1.29-1.42-2.06-2zm4.1 6.71c-.57-1.02-1.3-1.94-2.14-2.71.99-.82 1.85-1.82 2.53-2.97 2.14 1.38 3.62 3.65 3.9 6.26-.69-.19-2.14-.39-4.29-.58z"
-                        fill="#C5A059" />
+                        d="M25,5 C20,10 15,15 15,25 C15,35 25,35 30,30 C30,30 25,40 20,45 C25,48 35,40 38,32 C40,35 45,30 45,25 C45,15 35,10 25,5 Z M25,8 C30,12 35,15 38,20 C38,20 32,18 30,22 C30,22 28,15 25,8 Z"
+                        stroke="#C5A059" stroke-width="1" fill="none" />
+                    <path d="M18,20 C10,10 5,15 8,25 C8,25 12,22 18,20 Z" fill="#C5A059" opacity="0.3" />
                 </svg>
             </div>
 
@@ -613,12 +686,8 @@
                         📅 Agendar en Google Calendar
                     </a>
 
-                    <!-- Divisor Floral Pequeño -->
-                    <svg class="floral-divider" style="max-width: 150px; margin: 30px auto;" viewBox="0 0 100 20"
-                        fill="none">
-                        <path d="M0 10 Q 25 20 50 10 T 100 10" stroke="#C5A059" stroke-width="1.5" fill="none" />
-                        <circle cx="50" cy="10" r="3" fill="#C5A059" />
-                    </svg>
+                    <!-- Otro divisor pequeño -->
+                    <div style="font-size: 20px; color: var(--gold); margin: 30px 0;">⚜️</div>
 
                     <div class="godparents">
                         <div class="gp-col">
@@ -627,18 +696,12 @@
                         </div>
                         <div class="gp-col">
                             <div class="gp-title">Mis Padrinos</div>
-                            <div class="gp-names">David Moreno<br>&<br>Benjamín Candia</div>
+                            <div class="gp-names">David Moreno<br>&<br>Claudio Pizarro</div>
                         </div>
                     </div>
 
-                    <!-- Separador Elegante -->
-                    <svg class="floral-divider" viewBox="0 0 300 30" fill="none"
-                        style="margin: 40px auto; opacity: 0.6;">
-                        <path d="M10 15 L 130 15" stroke="#e6d3a3" stroke-width="1" />
-                        <path d="M170 15 L 290 15" stroke="#e6d3a3" stroke-width="1" />
-                        <rect x="140" y="5" width="20" height="20" transform="rotate(45 150 15)" stroke="#C5A059"
-                            stroke-width="2" fill="none" />
-                    </svg>
+                    <hr
+                        style="border: 0; border-top: 1px solid var(--gold-light); width: 60%; margin: 40px auto; opacity: 0.5;">
 
                     <div class="details-section">
                         <div class="detail-card">
@@ -668,13 +731,6 @@
 
 
                         </div>
-                    </div>
-
-                    <!-- Separador antes del RSVP -->
-                    <div style="margin: 50px 0 20px;">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="#C5A059" style="opacity:0.7;">
-                            <path d="M12 2L15 8L21 9L17 14L18 20L12 17L6 20L7 14L3 9L9 8L12 2Z" />
-                        </svg>
                     </div>
 
                     <div class="rsvp-section" id="rsvp">
