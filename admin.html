@@ -377,8 +377,8 @@
                         <td><span class="badge ${statusClass}">${guest.asistencia}</span></td>
                         <td style="font-size:0.8rem; color:#888;">${date}</td>
                         <td>
-                            <button class="action-btn btn-edit" onclick="editGuest(${guest.id}, '${guest.nombre.replace(/'/g, "\\'")}', '${guest.asistencia}')">✏️ Editar</button>
-                            <button class="action-btn btn-delete" onclick="deleteGuest(${guest.id}, '${guest.nombre.replace(/'/g, "\\'")}')">🗑️ Borrar</button>
+                            <button class="action-btn btn-edit" onclick="editGuest('${guest.id}', '${guest.nombre.replace(/'/g, "\\'")}', '${guest.asistencia}')">✏️ Editar</button>
+                            <button class="action-btn btn-delete" onclick="deleteGuest('${guest.id}', '${guest.nombre.replace(/'/g, "\\'")}')">🗑️ Borrar</button>
                         </td>
                     `;
                     tbody.appendChild(tr);
