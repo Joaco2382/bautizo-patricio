@@ -16,7 +16,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             background: white;
             padding: 30px;
@@ -27,6 +27,30 @@
         h1 {
             color: #C5A059;
             text-align: center;
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .btn-add {
+            background: #C5A059;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-add:hover {
+            background: #b88a44;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
         }
 
         table {
@@ -88,6 +112,136 @@
             font-weight: bold;
             color: #C5A059;
         }
+
+        .action-btn {
+            padding: 6px 12px;
+            margin: 0 3px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .btn-edit {
+            background: #4285F4;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: #3367d6;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #c82333;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            font-size: 1.5rem;
+            color: #C5A059;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #C5A059;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 25px;
+        }
+
+        .btn-cancel {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-cancel:hover {
+            background: #f5f5f5;
+        }
+
+        .btn-save {
+            padding: 10px 20px;
+            border: none;
+            background: #C5A059;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-save:hover {
+            background: #b88a44;
+        }
     </style>
 </head>
 
@@ -101,19 +255,22 @@
     <div class="container">
         <h1>🕊️ Lista de Invitados</h1>
 
-        <div class="stats">
-            <div class="stat-box">
-                <div>Confirmados</div>
-                <div class="stat-num" id="count-yes">0</div>
+        <div class="header-actions">
+            <div class="stats">
+                <div class="stat-box">
+                    <div>Confirmados</div>
+                    <div class="stat-num" id="count-yes">0</div>
+                </div>
+                <div class="stat-box">
+                    <div>Rechazados</div>
+                    <div class="stat-num" id="count-no">0</div>
+                </div>
+                <div class="stat-box">
+                    <div>Total</div>
+                    <div class="stat-num" id="count-total">0</div>
+                </div>
             </div>
-            <div class="stat-box">
-                <div>Rechazados</div>
-                <div class="stat-num" id="count-no">0</div>
-            </div>
-            <div class="stat-box">
-                <div>Total</div>
-                <div class="stat-num" id="count-total">0</div>
-            </div>
+            <button class="btn-add" onclick="openAddModal()">➕ Agregar Invitado</button>
         </div>
 
         <table>
@@ -122,14 +279,41 @@
                     <th>Nombre</th>
                     <th>Asistencia</th>
                     <th>Fecha Registro</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody id="guest-list">
                 <tr>
-                    <td colspan="3" style="text-align:center;">Cargando...</td>
+                    <td colspan="4" style="text-align:center;">Cargando...</td>
                 </tr>
             </tbody>
         </table>
+    </div>
+
+    <!-- Modal para Agregar/Editar -->
+    <div id="guestModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-header" id="modal-title">Agregar Invitado</div>
+            <form id="guestForm">
+                <input type="hidden" id="guest-id">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="guest-nombre" required>
+                </div>
+                <div class="form-group">
+                    <label>Asistencia</label>
+                    <select id="guest-asistencia" required>
+                        <option value="Si">Sí, asistirá</option>
+                        <option value="No">No asistirá</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="btn-save">Guardar</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script>
@@ -142,6 +326,7 @@
             }
         })
 
+        // Cargar lista de invitados
         async function loadGuests() {
             const { data, error } = await supabaseClient
                 .from('bautizo_invitados')
@@ -150,7 +335,7 @@
 
             if (error) {
                 console.error(error);
-                document.getElementById('guest-list').innerHTML = `<tr><td colspan="3" style="color:red;">Error cargando datos: ${error.message}</td></tr>`;
+                document.getElementById('guest-list').innerHTML = `<tr><td colspan="4" style="color:red;">Error cargando datos: ${error.message}</td></tr>`;
                 return;
             }
 
@@ -161,7 +346,7 @@
             let noCount = 0;
 
             if (data.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;">No hay registros aún.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No hay registros aún.</td></tr>';
             } else {
                 data.forEach(guest => {
                     const date = new Date(guest.created_at).toLocaleString('es-CL');
@@ -175,6 +360,10 @@
                         <td>${guest.nombre}</td>
                         <td><span class="badge ${statusClass}">${guest.asistencia}</span></td>
                         <td style="font-size:0.8rem; color:#888;">${date}</td>
+                        <td>
+                            <button class="action-btn btn-edit" onclick="editGuest(${guest.id}, '${guest.nombre.replace(/'/g, "\\'")}', '${guest.asistencia}')">✏️ Editar</button>
+                            <button class="action-btn btn-delete" onclick="deleteGuest(${guest.id}, '${guest.nombre.replace(/'/g, "\\'")}')">🗑️ Borrar</button>
+                        </td>
                     `;
                     tbody.appendChild(tr);
                 });
@@ -185,6 +374,98 @@
             document.getElementById('count-total').innerText = data.length;
         }
 
+        // Abrir modal para agregar
+        function openAddModal() {
+            document.getElementById('modal-title').innerText = 'Agregar Invitado';
+            document.getElementById('guest-id').value = '';
+            document.getElementById('guest-nombre').value = '';
+            document.getElementById('guest-asistencia').value = 'Si';
+            document.getElementById('guestModal').style.display = 'block';
+        }
+
+        // Editar invitado
+        function editGuest(id, nombre, asistencia) {
+            document.getElementById('modal-title').innerText = 'Editar Invitado';
+            document.getElementById('guest-id').value = id;
+            document.getElementById('guest-nombre').value = nombre;
+            document.getElementById('guest-asistencia').value = asistencia;
+            document.getElementById('guestModal').style.display = 'block';
+        }
+
+        // Borrar invitado
+        async function deleteGuest(id, nombre) {
+            if (!confirm(`¿Estás seguro de borrar a "${nombre}"?`)) {
+                return;
+            }
+
+            const { error } = await supabaseClient
+                .from('bautizo_invitados')
+                .delete()
+                .eq('id', id);
+
+            if (error) {
+                alert('Error al borrar: ' + error.message);
+                console.error(error);
+            } else {
+                alert('Invitado borrado exitosamente');
+                loadGuests();
+            }
+        }
+
+        // Cerrar modal
+        function closeModal() {
+            document.getElementById('guestModal').style.display = 'none';
+        }
+
+        // Manejar submit del formulario
+        document.getElementById('guestForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const id = document.getElementById('guest-id').value;
+            const nombre = document.getElementById('guest-nombre').value;
+            const asistencia = document.getElementById('guest-asistencia').value;
+
+            if (!nombre.trim()) {
+                alert('Por favor ingresa un nombre');
+                return;
+            }
+
+            let error;
+
+            if (id) {
+                // Actualizar existente
+                const result = await supabaseClient
+                    .from('bautizo_invitados')
+                    .update({ nombre, asistencia })
+                    .eq('id', id);
+                error = result.error;
+            } else {
+                // Crear nuevo
+                const result = await supabaseClient
+                    .from('bautizo_invitados')
+                    .insert([{ nombre, asistencia }]);
+                error = result.error;
+            }
+
+            if (error) {
+                alert('Error al guardar: ' + error.message);
+                console.error(error);
+            } else {
+                alert('Guardado exitosamente');
+                closeModal();
+                loadGuests();
+            }
+        });
+
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function (event) {
+            const modal = document.getElementById('guestModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Cargar invitados al inicio
         loadGuests();
     </script>
 </body>
