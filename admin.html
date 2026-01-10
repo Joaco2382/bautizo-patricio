@@ -247,9 +247,25 @@
 
 <body>
     <script>
-        const password = prompt("Ingrese contraseña de administrador:");
-        if (!password || password !== "1111") {
-            window.location.href = "index.html";
+        // Verificar si ya está autenticado
+        const isAuthenticated = localStorage.getItem('admin_authenticated');
+
+        if (!isAuthenticated) {
+            const password = prompt("Ingrese contraseña de administrador:");
+            if (!password || password !== "1111") {
+                window.location.href = "index.html";
+            } else {
+                // Guardar en localStorage que está autenticado
+                localStorage.setItem('admin_authenticated', 'true');
+            }
+        }
+
+        // Función para cerrar sesión
+        function logout() {
+            if (confirm('¿Estás seguro de cerrar sesión?')) {
+                localStorage.removeItem('admin_authenticated');
+                window.location.href = "index.html";
+            }
         }
     </script>
     <div class="container">
