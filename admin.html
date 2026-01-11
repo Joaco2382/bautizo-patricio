@@ -483,6 +483,19 @@
 
         // Cargar invitados al inicio
         loadGuests();
+
+        // Suscribirse a cambios en tiempo real
+        const channel = supabaseClient
+            .channel('bautizo_invitados_changes')
+            .on('postgres_changes',
+                { event: '*', schema: 'public', table: 'bautizo_invitados' },
+                (payload) => {
+                    console.log('Cambio detectado:', payload);
+                    loadGuests(); // Recargar la lista automáticamente
+                }
+            )
+            .subscribe();
+
     </script>
 </body>
 
